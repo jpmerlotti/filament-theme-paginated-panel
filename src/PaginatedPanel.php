@@ -32,6 +32,6 @@ abstract class PaginatedPanel extends Component
 //    }
     public function render()
     {
-        return view('livewire.table');
+        return view('paginated-panel::livewire.table');
     }
 }

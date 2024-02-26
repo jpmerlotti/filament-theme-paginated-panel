@@ -6,6 +6,6 @@ use Jpmerlotti\PaginatedPanel\Columns\Column;
 
 class DateColumn extends Column
 {
-    public string $component = 'columns.date-column';
+    public string $component = 'paginated-panel::columns.date-column';
 
 }
