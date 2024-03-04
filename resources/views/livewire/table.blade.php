@@ -1,5 +1,8 @@
 
 <div class="mt-8 flow-root space-y-3">
+    <div class="flex items-center">
+        <i class="fas fa-search"></i><input type="text" wire:model="search">
+    </div>
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
@@ -10,6 +13,11 @@
                             <th scope="col">
                                 <div class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                     {{ $column->label }}
+                                    @if($direction == 'desc')
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    @else
+                                        <i class="fa-solid fa-chevron-up"></i>
+                                    @endif
                                 </div>
                             </th>
                         @endforeach

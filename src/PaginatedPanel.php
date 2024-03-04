@@ -12,9 +12,10 @@ abstract class PaginatedPanel extends Component
     use withPagination;
 
     public array $data = [];
+    private string $direction = 'desc';
     public int $selectedPage = 1;
 
-    public abstract function api(): array;
+    public abstract function api(int $page = 1, array $filters = [], string $sortBy = 'id', string $direction = 'desc'): array;
 
     public abstract function columns(): array;
     public function data()
