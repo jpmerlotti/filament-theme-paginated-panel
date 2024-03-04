@@ -45,9 +45,9 @@
     <div class="flex justify-between items-center" x-data="{ current_page: {{ $data['current_page'] }} }">
         <span class="mr-4">Page {{ $data['current_page'] }} of {{ $data['last_page'] }}</span>
         <div class="flex justify-center items-center border border-gray-300 rounded-md">
-            <button type="button" class="fas fa-angle-left px-4 py-2 cursor-pointer hover:text-blue-500"
-                    :class=" { 'cursor-not-allowed': {{ $data['current_page'] }} === 1 }"
-                    wire:click="previousPage({{ $selectedPage }})"></button>
+{{--            <button type="button" class="fas fa-angle-left px-4 py-2 cursor-pointer hover:text-blue-500"--}}
+{{--                    :class=" { 'cursor-not-allowed': {{ $data['current_page'] }} === 1 }"--}}
+{{--                    wire:click="previousPage({{ $selectedPage }})"></button>--}}
             @foreach(range(1, $data['last_page']) as $page_number)
                 <button type="button" class="px-4 py-2 border-x cursor-pointer hover:text-blue-500"
                         :class="{ 'text-blue-500': {{ $page_number }} === {{ $selectedPage }} }"
@@ -55,9 +55,9 @@
                     {{ $page_number }}
                 </button>
             @endforeach
-            <button type="button" class="fas fa-angle-right px-4 py-2 cursor-pointer hover:text-blue-500"
-                    :class=" { 'cursor-not-allowed': {{ $data['current_page'] }} === {{ $data['last_page'] }} }"
-                    wire:click="nextPage({{ $selectedPage }})"></button>
+{{--            <button type="button" class="fas fa-angle-right px-4 py-2 cursor-pointer hover:text-blue-500"--}}
+{{--                    :class=" { 'cursor-not-allowed': {{ $data['current_page'] }} === {{ $data['last_page'] }} }"--}}
+{{--                    wire:click="nextPage({{ $selectedPage }})"></button>--}}
         </div>
     </div>
 </div>

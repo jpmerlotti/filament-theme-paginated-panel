@@ -26,26 +26,25 @@ abstract class PaginatedPanel extends Component
     {
         $this->paginate();
     }
-    public function paginate(int $page = 1): void
+    public function paginate(int $page = 1, array $filters = [], string $orderBy = 'id', string $direction = 'desc'): void
     {
         $this->selectedPage = $page;
-        $this->data = $this->api($page);
+        $this->data = $this->api($page, $filters, $orderBy, $direction);
         $this->resetPage('page');
     }
 
     public function nextPage(int $page): void
     {
         $this->selectedPage = $page + 1;
-        $this->data = $this->api($page + 1);
+        $this->data = $this->api($this->selectedPage);
         $this->resetPage('page');
     }
     public function previousPage(int $page): void
     {
         $this->selectedPage = $page - 1;
-        $this->data = $this->api($page - 1);
+        $this->data = $this->api($this->selectedPage);
         $this->resetPage('page');
     }
-
     public function render()
     {
         return view('PaginatedPanel::livewire.table');
