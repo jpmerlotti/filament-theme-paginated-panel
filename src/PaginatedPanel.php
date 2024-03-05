@@ -9,12 +9,13 @@ use Livewire\WithPagination;
 
 abstract class PaginatedPanel extends Component
 {
-    use HasFilters;
+    use HasFilters, WithPagination;
 
     public array $data = [];
     public array $pagination = [];
     public string $column = 'id';
     public string $direction = 'desc';
+    public string $searchFor = '', $search = '';
     public int $selectedPage = 1;
 
     public abstract function api(int $page = 1, array $filters = [], string $sortBy = 'id', string $direction = 'desc'): array;
@@ -45,6 +46,18 @@ abstract class PaginatedPanel extends Component
         $this->direction = $direction;
         $this->selectedPage = 1;
         $this->paginate();
+    }
+
+    public function search(string $searchFor = '', string $searchBy = ''): void
+    {
+        if(isset($searchFor)) {
+            $this->searchFor = $searchFor;
+        }
+        if(isset($searchBy)) {
+            $this->searchBy = $searchBy;
+        }
+        $this->setFilter($this->searchFor, $this->searchBy);
+        $this->paginate(1, $this->getFilterByKey($this->searchFor));
     }
 
     public function render()

@@ -1,7 +1,20 @@
 
 <div class="mt-8 flow-root space-y-3">
-    <div class="flex items-center">
-        <x-heroixon-o-magnifying-glass /><input type="text" wire:model="search" placeholder="Search">
+    <div class="flex justify-between items-center">
+        <div class="flex items-center">
+            <select wire:model="searchFor" class="border border-gray-300 rounded-md">
+                @foreach($this->columns() as $column)
+                    <option value="{{ $column->key }}">{{ $column->label }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="flex items-center border-2 border-gray-300 rounded-md">
+            <button class="border-r-2 border-gray-300"
+                    wire:click="search({{ $searchFor }}, {{ $search }})">
+                <x-heroicon-o-magnifying-glass class="w-9 h-5 group-hover:opacity-0" />
+            </button>
+            <input class="w-full border-none rounded-md" type="text" wire:model="search" placeholder="Search">
+        </div>
     </div>
     <div class="mt-8 flow-root space-y-3">
         <table class="w-full table-auto divide-y divide-gray-200 text-start dark:divide-white/5 dark:text-white/5 dark:bg-none">
@@ -9,23 +22,24 @@
             <tr>
                 @foreach($this->columns() as $column)
                     <th scope="col">
-                        <button class="flex items-center space-x-1 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-                                wire:click="sortBy({{ $column->key }})">
-                                    <span>
-                                        {{ $column->label }}
-                                    </span>
-                            <span>
-                                        @if($direction == 'desc')
-                                    <button wire:click="sortBy({{ $column->key }}, 'asc')">
-                                                <x-heroicon-o-chevron-down class="w-3 h-3 group-hover:opacity-0" />
-                                            </button>
-                                @else
-                                    <button wire:click="sortBy({{ $column->key }}, 'desc')">
-                                                <x-heroicon-o-chevron-up class="w-3 h-3 group-hover:opacity-0" />
-                                            </button>
-                                @endif
-                                    </span>
-                        </button>
+                        <div class="flex items-center">
+                            <span class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 space-x-2">
+                                <button wire:click="sortBy({{ $column->key }})">
+                                    {{ $column->label }}
+                                </button>
+                                <span>
+                                    @if($direction == 'asc' && $column->key == $column)
+                                        <button wire:click="sortBy({{ $column->key }}, 'desc')">
+                                            <x-heroicon-o-chevron-down class="w-3 h-3 group-hover:opacity-0" />
+                                        </button>
+                                    @else
+                                        <button wire:click="sortBy({{ $column->key }}, 'asc')">
+                                            <x-heroicon-o-chevron-up class="w-3 h-3 group-hover:opacity-0" />
+                                        </button>
+                                    @endif
+                                </span>
+                            </span>
+                        </div>
                     </th>
                 @endforeach
                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
