@@ -16,7 +16,7 @@ class PaginatedPanelServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('paginated-panel')
+            ->name('PaginatedPanel')
             ->hasViews();
 //            ->hasCommand(PaginatedPanelCommand::class)
 //            ->hasMigration('create_filament-theme-paginated-panel_table')
