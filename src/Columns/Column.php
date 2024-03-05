@@ -4,7 +4,7 @@ namespace Jpmerlotti\PaginatedPanel\Columns;
 
 abstract class Column
 {
-    public string $component = 'paginated-panel::columns.column';
+    public string $component = 'PaginatedPanel::columns.column';
     public string $key;
     public string $label;
     public function __construct($key)
